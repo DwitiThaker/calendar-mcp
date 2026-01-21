@@ -41,8 +41,6 @@ def is_slot_available(start_time :str, end_time: str):
 
     service = get_calendar_service()
 
-    
-
     body = {
         "timeMin": start_time,
         "timeMax": end_time,

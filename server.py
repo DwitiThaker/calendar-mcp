@@ -7,6 +7,25 @@ mcp = FastMCP(name="Calendar MCP Server")
 
 
 @mcp.tool
+def check_availability(start_time: str, end_time: str):
+    """
+    Check if the given time slot is available on the calendar.
+    """
+    try: 
+        available = is_slot_available(start_time, end_time)
+    except  Exception as  e:
+        return {
+            "status": "error",
+            "stage": "availability_check",
+            "message": str(e),
+        }
+    return {
+        "status": "success",
+        "available": available
+    }
+
+
+@mcp.tool
 def book_appointment(
     title: str,
     start_time: str,
